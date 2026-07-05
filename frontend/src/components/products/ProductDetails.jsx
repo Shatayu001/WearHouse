@@ -13,7 +13,7 @@ const ProductDetails = ({ productId }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { selectedProduct, loading, error, similarProducts } = useSelector(
-    (state) => state.products
+    (state) => state.products,
   );
 
   const { user, guestId } = useSelector((state) => state.auth);
@@ -69,7 +69,7 @@ const ProductDetails = ({ productId }) => {
         color: selectedColor,
         guestId,
         userId: user?._id,
-      })
+      }),
     )
       .then(() => {
         toast.success("Product added to cart!", {
@@ -147,10 +147,11 @@ const ProductDetails = ({ productId }) => {
               </h1>
               {/* here is p tag */}
               <p className="text-lg text-gray-600 mb-1 line-through">
-                ₹{selectedProduct.price}
-              </p>
-              <p className="text-xl text-gray-500 mb-2">
                 ₹{selectedProduct.discountPrice}
+              </p>
+
+              <p className="text-xl text-gray-500 mb-2">
+                ₹{selectedProduct.price}
               </p>
               <p className="text-gray-600 mb-4">
                 {selectedProduct.description}

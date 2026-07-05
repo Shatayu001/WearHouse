@@ -19,8 +19,8 @@ const orderItemSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    size: String, // Likely optional or not explicitly required
-    color: String, // Likely optional or not explicitly required
+    size: String,
+    color: String,
     quantity: {
       type: Number,
       required: true,
@@ -28,7 +28,7 @@ const orderItemSchema = new mongoose.Schema(
   },
   {
     _id: false,
-  }
+  },
 );
 
 const orderSchema = new mongoose.Schema(
@@ -79,7 +79,7 @@ const orderSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 module.exports = mongoose.model("order", orderSchema);

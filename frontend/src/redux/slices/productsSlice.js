@@ -5,36 +5,22 @@ import axios from "axios";
 
 export const fetchProductsByFilters = createAsyncThunk(
   "products/fetchByFilters",
-  // FIX: Accept a single 'filters' object as payload.
   async (filters) => {
     const query = new URLSearchParams();
 
-    // Iterate over the filters object
     Object.entries(filters).forEach(([key, value]) => {
-      // Ensure the value is not empty or null/undefined
       if (value || value === 0) {
         let finalValue = value;
 
-        // Critical: If the value is an array (like sizes, brands), join it by comma
-        // This is the format your backend is expecting for $in queries
         if (Array.isArray(value)) {
           finalValue = value.join(",");
         }
 
-        // Only append to query if the value is not an empty string after processing
         if (finalValue !== "") {
           query.append(key, finalValue);
         }
       }
     });
-
-    // Old manual way (removed):
-    /*
-    if (collection) query.append("collection", collection);
-    if (size) query.append("size", size);
-    // ... all other params
-    */
-
     const response = await axios.get(
       `${import.meta.env.VITE_BACKEND_URL}/api/products?${query.toString()}`
     );
@@ -42,11 +28,9 @@ export const fetchProductsByFilters = createAsyncThunk(
   }
 );
 
-// Async thunk to fetch a single product by ID
 export const fetchProductDetails = createAsyncThunk(
   "products/fetchProductDetails",
   async (id, { rejectWithValue }) => {
-    // Apply the check to prevent network request with "undefined" ID
     if (!id || id === "undefined") {
       return rejectWithValue(
         "Cannot fetch product details: Missing or invalid product ID."
@@ -59,13 +43,11 @@ export const fetchProductDetails = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      // Use rejectWithValue for robust error handling
       return rejectWithValue(error.response.data.message || error.message);
     }
   }
 );
 
-// Async thunk to update a product
 export const updateProduct = createAsyncThunk(
   "products/updateProduct",
   async ({ id, productData }) => {
@@ -82,14 +64,10 @@ export const updateProduct = createAsyncThunk(
   }
 );
 
-// Async thunk to fetch similar products
-
 export const fetchSimilarProducts = createAsyncThunk(
   "products/fetchSimilarProducts",
   async ({ id }, { rejectWithValue }) => {
-    // Check if the ID is missing or is the literal string "undefined"
     if (!id || id === "undefined") {
-      // Return a rejected promise with a specific error
       return rejectWithValue(
         "Cannot fetch similar products: Missing or invalid product ID."
       );
@@ -101,19 +79,16 @@ export const fetchSimilarProducts = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      // Use rejectWithValue for better error handling in the slice
       return rejectWithValue(error.response.data.message || error.message);
     }
   }
 );
 
-// Slice Definition
-
 const productsSlice = createSlice({
   name: "products",
   initialState: {
     products: [],
-    selectedProduct: null, // Store the details of the single Product
+    selectedProduct: null,
     similarProducts: [],
     loading: false,
     error: null,

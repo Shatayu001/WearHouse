@@ -32,7 +32,7 @@ const Navbar = () => {
         {/* { left - logo} */}
         <div>
           <Link to="/" className="text-2xl font-medium">
-            WearHouse
+            WareHouse
           </Link>
         </div>
         {/* {Center - Navigation Links} */}

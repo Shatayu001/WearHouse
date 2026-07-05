@@ -32,6 +32,8 @@ const processExactFilterCaseInsensitive = (paramValue, dbFieldName, query) => {
   }
 };
 
+// * ---------
+
 // @route POST /api/products
 // @desc Create a new Product
 // @access Private/Admin
@@ -124,27 +126,25 @@ router.put("/:id", protect, admin, async (req, res) => {
     const product = await Product.findById(req.params.id);
 
     if (product) {
-      product.name = name || product.name;
-      product.description = description || product.description;
-      product.price = price || product.price;
-      product.discountPrice = discountPrice || product.discountPrice;
-      product.countInStock = countInStock || product.countInStock;
-      product.category = category || product.category;
-      product.brand = brand || product.brand;
-      product.sizes = sizes || product.sizes;
-      product.colors = colors || product.colors;
-      product.collections = collections || product.collections;
-      product.material = material || product.material;
-      product.gender = gender || product.gender;
-      product.images = images || product.images;
-      product.isFeatured =
-        isFeatured !== undefined ? isFeatured : product.isFeatured;
-      product.isPublished =
-        isPublished !== undefined ? isPublished : product.isPublished;
-      product.tags = tags || product.tags;
-      product.dimensions = dimensions || product.dimensions;
-      product.weight = weight || product.weight;
-      product.sku = sku || product.sku;
+      if (name !== undefined) product.name = name;
+      if (description !== undefined) product.description = description;
+      if (price !== undefined) product.price = price;
+      if (discountPrice !== undefined) product.discountPrice = discountPrice;
+      if (countInStock !== undefined) product.countInStock = countInStock;
+      if (category !== undefined) product.category = category;
+      if (brand !== undefined) product.brand = brand;
+      if (sizes !== undefined) product.sizes = sizes;
+      if (colors !== undefined) product.colors = colors;
+      if (collections !== undefined) product.collections = collections;
+      if (material !== undefined) product.material = material;
+      if (gender !== undefined) product.gender = gender;
+      if (images !== undefined) product.images = images;
+      if (isFeatured !== undefined) product.isFeatured = isFeatured;
+      if (isPublished !== undefined) product.isPublished = isPublished;
+      if (tags !== undefined) product.tags = tags;
+      if (dimensions !== undefined) product.dimensions = dimensions;
+      if (weight !== undefined) product.weight = weight;
+      if (sku !== undefined) product.sku = sku;
 
       const updatedProduct = await product.save();
       res.json(updatedProduct);

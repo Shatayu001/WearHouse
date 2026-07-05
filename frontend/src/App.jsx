@@ -17,8 +17,9 @@ import OrderConfirmationPage from "./pages/OrderConfirmationPage";
 import OrderDetailsPage from "./pages/OrderDetailsPage";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
-
+import { Outlet } from "react-router-dom";
 import { Provider } from "react-redux";
+import AddProduct from "./components/admin/AddProduct";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import store from "./redux/store";
 
@@ -60,6 +61,7 @@ const App = () => {
             <Route path="users" element={<UserManagement />} />
             <Route path="products" element={<ProductManagement />} />
             <Route path="products/:id/edit" element={<EditProduct />} />
+            <Route path="products/new" element={<AddProduct />} />
             <Route path="orders" element={<OrderManagement />} />
           </Route>
         </Routes>
