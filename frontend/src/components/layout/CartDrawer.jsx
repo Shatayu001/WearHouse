@@ -1,7 +1,7 @@
 import { IoMdClose } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import CartContents from "../Cart/CartContents";
+import CartContents from "../cart/CartContents";
 
 const CartDrawer = ({ drawerOpen, toggleCartDrawer }) => {
   const navigate = useNavigate();
