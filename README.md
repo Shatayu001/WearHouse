@@ -158,8 +158,7 @@ PAYPAL_CLIENT_ID=your_paypal_client_id
 
 **Shatayu Khante**
 
-- GitHub: https://github.com/Shatayu001
-- LinkedIn: *(Add your LinkedIn profile)*
+
 
 ---
 
