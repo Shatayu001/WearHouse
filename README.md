@@ -131,18 +131,6 @@ PAYPAL_CLIENT_ID=your_paypal_client_id
 
 ---
 
-## 📸 Screenshots
-
-> Add screenshots of your application here.
-
-- Home Page
-- Product Details
-- Shopping Cart
-- Checkout
-- Admin Dashboard
-
----
-
 ## 📈 Future Improvements
 
 - Wishlist
